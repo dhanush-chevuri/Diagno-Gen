@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Parkinson's Disease Detection - Healthcare AI System{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Parkinson's Disease Detection</h4>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Enter voice measurement parameters to assess Parkinson's disease risk.</p>
+                    <form action="{{ url_for('predictparkinsons') }}" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fo" class="form-label">MDVP:Fo(Hz)</label>
+                                <input type="number" step="0.001" class="form-control" id="fo" name="fo" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="fhi" class="form-label">MDVP:Fhi(Hz)</label>
+                                <input type="number" step="0.001" class="form-control" id="fhi" name="fhi" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="flo" class="form-label">MDVP:Flo(Hz)</label>
+                                <input type="number" step="0.001" class="form-control" id="flo" name="flo" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="jitter" class="form-label">MDVP:Jitter(%)</label>
+                                <input type="number" step="0.000001" class="form-control" id="jitter" name="jitter" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="jitter_abs" class="form-label">MDVP:Jitter(Abs)</label>
+                                <input type="number" step="0.000001" class="form-control" id="jitter_abs" name="jitter_abs" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rap" class="form-label">MDVP:RAP</label>
+                                <input type="number" step="0.000001" class="form-control" id="rap" name="rap" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="ppq" class="form-label">MDVP:PPQ</label>
+                                <input type="number" step="0.000001" class="form-control" id="ppq" name="ppq" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="jitter_ddp" class="form-label">Jitter:DDP</label>
+                                <input type="number" step="0.000001" class="form-control" id="jitter_ddp" name="jitter_ddp" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="shimmer" class="form-label">MDVP:Shimmer</label>
+                                <input type="number" step="0.000001" class="form-control" id="shimmer" name="shimmer" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="shimmer_db" class="form-label">MDVP:Shimmer(dB)</label>
+                                <input type="number" step="0.001" class="form-control" id="shimmer_db" name="shimmer_db" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="apq3" class="form-label">Shimmer:APQ3</label>
+                                <input type="number" step="0.000001" class="form-control" id="apq3" name="apq3" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="apq5" class="form-label">Shimmer:APQ5</label>
+                                <input type="number" step="0.000001" class="form-control" id="apq5" name="apq5" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="apq" class="form-label">MDVP:APQ</label>
+                                <input type="number" step="0.000001" class="form-control" id="apq" name="apq" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="shimmer_dda" class="form-label">Shimmer:DDA</label>
+                                <input type="number" step="0.000001" class="form-control" id="shimmer_dda" name="shimmer_dda" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="nhr" class="form-label">NHR</label>
+                                <input type="number" step="0.000001" class="form-control" id="nhr" name="nhr" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="hnr" class="form-label">HNR</label>
+                                <input type="number" step="0.001" class="form-control" id="hnr" name="hnr" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rpde" class="form-label">RPDE</label>
+                                <input type="number" step="0.000001" class="form-control" id="rpde" name="rpde" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="dfa" class="form-label">DFA</label>
+                                <input type="number" step="0.000001" class="form-control" id="dfa" name="dfa" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="spread1" class="form-label">spread1</label>
+                                <input type="number" step="0.000001" class="form-control" id="spread1" name="spread1" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="spread2" class="form-label">spread2</label>
+                                <input type="number" step="0.000001" class="form-control" id="spread2" name="spread2" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="d2" class="form-label">D2</label>
+                                <input type="number" step="0.000001" class="form-control" id="d2" name="d2" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="ppe" class="form-label">PPE</label>
+                                <input type="number" step="0.000001" class="form-control" id="ppe" name="ppe" required>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Check Risk</button>
+                            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

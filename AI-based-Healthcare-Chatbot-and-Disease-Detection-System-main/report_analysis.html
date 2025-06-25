@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Report Analysis</title>
+    
+    <style>
+        .upload-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .file-input {
+            padding: 10px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background: #45a049;
+        }
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+        .result-container.show {
+            display: block;
+        }
+        .disease-risk {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .high-risk {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .low-risk {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>Medical Report Analysis</h2>
+        <form class="upload-form" action="{{ url_for('analyze_report') }}" method="POST" enctype="multipart/form-data">
+            <div class="file-input">
+                <input type="file" name="medical_report" accept=".pdf,.txt,.csv,.xlsx" required>
+                <p>Supported formats: PDF, TXT, CSV, XLSX</p>
+            </div>
+            <button type="submit" class="submit-btn">Analyze Report</button>
+        </form>
+
+        {% if results %}
+        <div class="result-container show">
+            <h3>Analysis Results</h3>
+            {% for disease, risk in results.items() %}
+            <div class="disease-risk {% if risk == 'High' %}high-risk{% else %}low-risk{% endif %}">
+                <h4>{{ disease }}</h4>
+                <p>Risk Level: {{ risk }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html> 

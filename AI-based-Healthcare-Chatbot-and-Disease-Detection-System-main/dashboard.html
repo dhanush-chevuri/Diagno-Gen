@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Healthcare AI System{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        color: white;
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+        border-radius: 0 0 10px 10px;
+    }
+    
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .disease-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-outline-light:hover {
+        color: #2c3e50;
+    }
+    
+    .list-group-item {
+        border-left: 0;
+        border-right: 0;
+    }
+    
+    .list-group-item:first-child {
+        border-top: 0;
+    }
+    
+    .list-group-item:last-child {
+        border-bottom: 0;
+    }
+</style>
+
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-4">Welcome, {{ current_user.username }}</h1>
+                <p class="lead">Access your healthcare tools and get instant medical insights.</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <a href="{{ url_for('logout') }}" class="btn btn-outline-light">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-robot feature-icon text-primary"></i>
+                    <h5 class="card-title">AI Chatbot</h5>
+                    <p class="card-text">Get instant medical assistance and answers to your health questions.</p>
+                    <a href="{{ url_for('chatbot') }}" class="btn btn-primary">Start Chat</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-file-medical feature-icon text-success"></i>
+                    <h5 class="card-title">Report Analysis</h5>
+                    <p class="card-text">Upload your medical reports for instant analysis and insights.</p>
+                    <a href="{{ url_for('report_analysis') }}" class="btn btn-primary">Analyze Report</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-heartbeat feature-icon text-danger"></i>
+                    <h5 class="card-title">Disease Detection</h5>
+                    <p class="card-text">Check your risk for various diseases using our AI models.</p>
+                    <a href="{{ url_for('disindex') }}" class="btn btn-primary">Start Detection</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="mb-4">Disease Detection Tools</h2>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-heart disease-icon text-danger"></i>
+                    <h5 class="card-title">Heart Disease</h5>
+                    <p class="card-text">Check your cardiovascular health risk.</p>
+                    <a href="{{ url_for('heart') }}" class="btn btn-outline-primary">Check Risk</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-tint disease-icon text-primary"></i>
+                    <h5 class="card-title">Diabetes</h5>
+                    <p class="card-text">Assess your diabetes risk level.</p>
+                    <a href="{{ url_for('diabetes') }}" class="btn btn-outline-primary">Check Risk</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-lungs disease-icon text-success"></i>
+                    <h5 class="card-title">Cancer</h5>
+                    <p class="card-text">Evaluate breast cancer risk.</p>
+                    <a href="{{ url_for('cancer') }}" class="btn btn-outline-primary">Check Risk</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-filter disease-icon text-info"></i>
+                    <h5 class="card-title">Kidney Disease</h5>
+                    <p class="card-text">Check kidney health status.</p>
+                    <a href="{{ url_for('kidney') }}" class="btn btn-outline-primary">Check Risk</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-biohazard disease-icon text-warning"></i>
+                    <h5 class="card-title">Liver Disease</h5>
+                    <p class="card-text">Assess liver health condition.</p>
+                    <a href="{{ url_for('liver') }}" class="btn btn-outline-primary">Check Risk</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-brain disease-icon text-primary"></i>
+                    <h5 class="card-title">Parkinson's Disease</h5>
+                    <p class="card-text">Assess risk of Parkinson's disease using voice measurements.</p>
+                    <a href="{{ url_for('parkinsons') }}" class="btn btn-outline-primary">Check Risk</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Recent Activity</h3>
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-clock text-muted me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Last login</h6>
+                                <small class="text-muted">{{ current_user.last_login.strftime('%Y-%m-%d %H:%M') if current_user.last_login else 'First time login' }}</small>
+                            </div>
+                        </div>
+                        <div class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-user text-muted me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Account created</h6>
+                                <small class="text-muted">{{ current_user.created_at.strftime('%Y-%m-%d') if current_user.created_at else 'N/A' }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Quick Actions</h3>
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('help') }}" class="btn btn-outline-primary text-start">
+                            <i class="fas fa-question-circle me-2"></i>Help Center
+                        </a>
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-primary text-start">
+                            <i class="fas fa-info-circle me-2"></i>About Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

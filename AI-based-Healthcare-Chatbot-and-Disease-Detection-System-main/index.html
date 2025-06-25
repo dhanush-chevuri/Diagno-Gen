@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Healthcare AI System{% endblock %}
+
+{% block content %}
+<style>
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+    }
+
+    .disease-card-svg {
+        width: 100%;
+        height: 120px; /* Reduced from 180px */
+        margin-bottom: 10px; /* Reduced from 15px */
+        transition: all 0.3s ease;
+    }
+
+    .disease-card {
+        perspective: 1000px;
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        min-height: 320px; /* Ensures consistent card height */
+    }
+
+    .disease-card:hover {
+        transform: translateY(-5px); /* Reduced from 8px */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Reduced shadow */
+    }
+
+    .svg-icon {
+        width: 80px; /* Fixed size for consistency */
+        height: 80px;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .svg-icon:hover {
+        animation: pulse 1.5s infinite;
+    }
+
+    .card-title {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem; /* Reduced spacing */
+        font-size: 1.1rem; /* Slightly larger text */
+    }
+
+    .card-text {
+        color: #7f8c8d;
+        font-size: 0.85rem; /* Adjusted text size */
+        margin-bottom: 1rem;
+        min-height: 40px; /* Ensures consistent text block height */
+    }
+
+    .section-title {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 1.5rem; /* Reduced spacing */
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px; /* Reduced width */
+        height: 3px;
+        background: linear-gradient(90deg, #3498db, #9b59b6);
+        border-radius: 3px;
+    }
+
+    .card-body {
+        padding: 1.25rem; /* Reduced padding */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-learn-more {
+        margin-top: auto; /* Pushes button to bottom */
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8rem;
+    }
+</style>
+
+<div class="container mt-4"> <!-- Reduced top margin -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="section-title">Supported Disease Detection</h2>
+            <p class="text-muted mb-3">Our AI system provides accurate predictions for various health conditions</p>
+        </div>
+        
+        <!-- Heart Disease Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 disease-card">
+                <div class="card-body">
+                    <div class="disease-card-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="svg-icon">
+                            <path d="M50 30 Q65 35, 70 50 Q75 65, 50 75 Q25 65, 30 50 Q35 35, 50 30" 
+                                  fill="#FF6B6B" stroke="#FF4757" stroke-width="2"/>
+                            <path d="M40 45 Q45 40, 50 45 Q55 50, 50 55 Q45 50, 40 45" 
+                                  fill="#FF4757" opacity="0.7"/>
+                        </svg>
+                    </div>
+                    <h5 class="card-title text-danger">Heart Disease</h5>
+                    <p class="card-text">Early detection of cardiovascular conditions using advanced algorithms</p>
+                    <a href="#" class="btn btn-learn-more" style="background-color: #FF6B6B; color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Diabetes Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 disease-card">
+                <div class="card-body">
+                    <div class="disease-card-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="svg-icon">
+                            <circle cx="50" cy="50" r="35" fill="#4A90E2" opacity="0.8"/>
+                            <path d="M50 25 L50 75 M25 50 L75 50" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h5 class="card-title text-primary">Diabetes</h5>
+                    <p class="card-text">Blood sugar level analysis and prediction models</p>
+                    <a href="#" class="btn btn-learn-more" style="background-color: #4A90E2; color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cancer Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 disease-card">
+                <div class="card-body">
+                    <div class="disease-card-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="svg-icon">
+                            <path d="M25 50 Q50 25, 75 50 Q50 75, 25 50" 
+                                  fill="#2ECC71" stroke="#27AE60" stroke-width="2"/>
+                            <path d="M45 45 L55 55 M55 45 L45 55" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h5 class="card-title text-success">Cancer</h5>
+                    <p class="card-text">Breast cancer risk assessment with high accuracy</p>
+                    <a href="#" class="btn btn-learn-more" style="background-color: #2ECC71; color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Kidney Disease Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 disease-card">
+                <div class="card-body">
+                    <div class="disease-card-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="svg-icon">
+                            <path d="M30 45 Q50 30, 70 45 Q85 60, 50 75 Q15 60, 30 45" 
+                                  fill="#3498DB" stroke="#2980B9" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h5 class="card-title text-info">Kidney Disease</h5>
+                    <p class="card-text">Comprehensive kidney function analysis</p>
+                    <a href="#" class="btn btn-learn-more" style="background-color: #3498DB; color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Parkinson's Disease Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 disease-card">
+                <div class="card-body">
+                    <div class="disease-card-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="svg-icon">
+                            <circle cx="50" cy="40" r="25" fill="#9B59B6" opacity="0.8"/>
+                            <path d="M50 55 L50 70 M40 65 L60 65" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h5 class="card-title text-warning">Parkinson's Disease</h5>
+                    <p class="card-text">Early neurological condition detection</p>
+                    <a href="#" class="btn btn-learn-more" style="background-color: #9B59B6; color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Liver Disease Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 disease-card">
+                <div class="card-body">
+                    <div class="disease-card-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="svg-icon">
+                            <path d="M25 50 Q50 30, 75 50 Q50 70, 25 50" 
+                                  fill="#F39C12" stroke="#D35400" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h5 class="card-title text-secondary">Liver Disease</h5>
+                    <p class="card-text">Advanced liver function and health screening</p>
+                    <a href="#" class="btn btn-learn-more" style="background-color: #F39C12; color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
